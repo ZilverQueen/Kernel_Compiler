@@ -21,7 +21,7 @@ git clone --depth=1 https://github.com/mgs28-mh/kernel_xiaomi_ulysse-4.9.git -b 
 git clone --depth=1 https://github.com/amier2002/GabutersTC-clang GabutersTC # xRageTC set as Clang Default
 
 # Main Declaration
-KERNEL_ROOTDIR=$(pwd)/$ulysse # IMPORTANT ! Fill with your kernel source root directory.
+KERNEL_ROOTDIR=$(pwd)/ulysse # IMPORTANT ! Fill with your kernel source root directory.
 DEVICE_DEFCONFIG=ulysse_defconfig # IMPORTANT ! Declare your kernel source defconfig file here.
 CLANG_ROOTDIR=$(pwd)/GabutersTC # IMPORTANT! Put your clang directory here.
 export KBUILD_BUILD_USER=@amier_san09 # Change with your own name or else.
