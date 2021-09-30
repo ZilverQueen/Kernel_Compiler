@@ -24,7 +24,7 @@ git clone --depth=1 https://github.com/amier2002/GabutersTC-clang GabutersTC # x
 KERNEL_ROOTDIR=$(pwd)/ulysse # IMPORTANT ! Fill with your kernel source root directory.
 DEVICE_DEFCONFIG=ulysse_defconfig # IMPORTANT ! Declare your kernel source defconfig file here.
 CLANG_ROOTDIR=$(pwd)/GabutersTC # IMPORTANT! Put your clang directory here.
-export KBUILD_BUILD_USER=@amier_san09 # Change with your own name or else.
+export KBUILD_BUILD_USER=amier_san09 # Change with your own name or else.
 export KBUILD_BUILD_HOST=Gabuters-dev # Change with your own hostname.
 
 # Main Declaration
