@@ -17,7 +17,7 @@
 
 echo "Downloading few Dependecies . . ."
 # Kernel Sources
-git clone --depth=1 https://github.com/mgs28-mh/kernel_xiaomi_ulysse-4.9.git -b 11 ulysse
+git clone --depth=1 https://github.com/MhmmdAmier/kernel_xiaomi_ulysse-4.9.git -b 11 ulysse
 git clone --depth=1 https://github.com/amier2002/GabutersTC-clang GabutersTC # xRageTC set as Clang Default
 
 # Main Declaration
