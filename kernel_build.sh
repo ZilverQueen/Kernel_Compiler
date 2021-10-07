@@ -8,7 +8,7 @@
 # KERNEL_SOURCE | Your kernel link source
 # KERNEL_BRANCH  | Your needed kernel branch if needed with -b. eg -b eleven_eas
 # DEVICE_CODENAME | Your device codename
-# DEVICE_DEFCONFIG | Your device defconfig eg. lavender_defconfig
+# DEVICE_DEFCONFIG | Your device defconfig eg. ulysse_defconfig
 # ANYKERNEL | Your Anykernel link repository
 # TG_TOKEN | Your telegram bot token
 # TG_CHAT_ID | Your telegram private ci chat id
@@ -17,7 +17,7 @@
 
 echo "Downloading few Dependecies . . ."
 # Kernel Sources
-git clone --depth=1 https://github.com/MhmmdAmier/kernel_xiaomi_ulysse-4.9.git -b 11 ulysse
+git clone --depth=1 https://github.com/mgs28-mh/kernel_xiaomi_ulysse-4.9.git -b 11 ulysse
 git clone --depth=1 https://github.com/amier2002/GabutersTC-clang GabutersTC # xRageTC set as Clang Default
 
 # Main Declaration
