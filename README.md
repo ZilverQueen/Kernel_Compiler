@@ -13,7 +13,7 @@ xCloudDroneCI is a ci script which is integrated with cloud.drone.io which can s
 * KERNEL_SOURCE | Your kernel link source
 * KERNEL_BRANCH  | Your needed kernel branch if needed with -b. eg -b eleven_eas
 * DEVICE_CODENAME | Your device codename
-* DEVICE_DEFCONFIG | Your device defconfig eg. lavender_defconfig
+* DEVICE_DEFCONFIG | Your device defconfig eg. ulysse_defconfig
 * ANYKERNEL | Your Anykernel link repository
 * TG_TOKEN | Your telegram bot token
 * TG_CHAT_ID | Your telegram private ci chat id
