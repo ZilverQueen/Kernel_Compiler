@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 #
 # Copyright (C) 2021 a xyzprjkt property
-# @Gabuters-Dev
+# @Gabuters Team
 
 # Needed Secret Variable
 # KERNEL_NAME | Your kernel name
