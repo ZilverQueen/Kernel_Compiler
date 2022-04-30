@@ -97,8 +97,20 @@ function push() {
         -F chat_id="$TG_CHAT_ID" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>$DEVICE_CODENAME</b> | <b>${KBUILD_COMPILER_STRING}</b>"
+        -F caption="$KERNEL_NAME
+==========================
+👤 Owner: t.me/amier_san09
+🏚️ Linux version: $KERNEL_VERSION
+🌿 Branch: $BRANCH
+🎁 Top commit: $LATEST_COMMIT
+👩‍💻 Commit author: $COMMIT_BY
+🐧 UTS version: $UTS_VERSION
+💡 Compiler: $TOOLCHAIN_VERSION
+==========================
+Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s)."
+
 }
+
 # Fin Error
 function finerr() {
     curl -s -X POST "https://api.telegram.org/bot$TG_TOKEN/sendMessage" \
@@ -107,6 +119,19 @@ function finerr() {
         -d "parse_mode=markdown" \
         -d text="Build throw an error(s)"
     exit 1
+
+}
+
+function info() {
+cd $KERNEL_ROOTDIR
+KERNEL_VERSION=$(cat $KERNEL_ROOTDIR/out/.config | grep Linux/arm64 | cut -d " " -f3)
+UTS_VERSION=$(cat $KERNEL_ROOTDIR/out/include/generated/compile.h | grep UTS_VERSION | cut -d '"' -f2)
+TOOLCHAIN_VERSION=$(cat $KERNEL_ROOTDIR/out/include/generated/compile.h | grep LINUX_COMPILER | cut -d '"' -f2)
+TRIGGER_SHA="$(git rev-parse HEAD)"
+LATEST_COMMIT="$(git log --pretty=format:'%s' -1)"
+COMMIT_BY="$(git log --pretty=format:'by %an' -1)"
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+
 }
 
 # Zipping
@@ -114,10 +139,13 @@ function zipping() {
     cd AnyKernel || exit 1
     zip -r9 $KERNEL_NAME-$DEVICE_CODENAME-${DATE}.zip *
     cd ..
+
 }
+
 check
 compile
 zipping
 END=$(date +"%s")
 DIFF=$(($END - $START))
+info
 push
