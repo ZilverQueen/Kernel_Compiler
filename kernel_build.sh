@@ -4,16 +4,10 @@
 # @Gabuters Team
 
 # Needed Secret Variable
-# KERNEL_NAME | Your kernel name
-# KERNEL_SOURCE | Your kernel link source
-# KERNEL_BRANCH  | Your needed kernel branch if needed with -b. eg -b eleven_eas
-# DEVICE_CODENAME | Your device codename
-# DEVICE_DEFCONFIG | Your device defconfig eg. ulysse_defconfig
 # ANYKERNEL | Your Anykernel link repository
+# KERNEL_NAME | Your kernel name
 # TG_TOKEN | Your telegram bot token
 # TG_CHAT_ID | Your telegram private ci chat id
-# BUILD_USER | Your username
-# BUILD_HOST | Your hostname
 
 echo "Downloading few Dependecies . . ."
 # Kernel Sources
@@ -31,7 +25,7 @@ export KBUILD_BUILD_HOST=Gabuters-dev # Change with your own hostname.
 CLANG_VER="$("$CLANG_ROOTDIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
 LLD_VER="$("$CLANG_ROOTDIR"/bin/ld.lld --version | head -n 1)"
 export KBUILD_COMPILER_STRING="$CLANG_VER with $LLD_VER"
-IMAGE=$(pwd)/$DEVICE_CODENAME/out/arch/arm64/boot/Image.gz-dtb
+IMAGE=$(pwd)/ulysse/out/arch/arm64/boot/Image.gz-dtb
 DATE=$(date +"%F-%S")
 START=$(date +"%s")
 
@@ -97,7 +91,7 @@ function push() {
         -F chat_id="$TG_CHAT_ID" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>$DEVICE_CODENAME</b> | <b>${KBUILD_COMPILER_STRING}</b>"
+        -F caption="Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>ulysse</b> | <b>${KBUILD_COMPILER_STRING}</b>"
 }
 # Fin Error
 function finerr() {
@@ -112,7 +106,7 @@ function finerr() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 $KERNEL_NAME-$DEVICE_CODENAME-${DATE}.zip *
+    zip -r9 $KERNEL_NAME-ulysse-${DATE}.zip *
     cd ..
 }
 check
