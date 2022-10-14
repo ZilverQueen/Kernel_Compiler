@@ -11,12 +11,12 @@
 
 echo "Downloading few Dependecies . . ."
 # Kernel Sources
-git clone --depth=1 https://github.com/mgs28-mh/kernel_xiaomi_ulysse-4.9.git -b a12/temp ulysse
+git clone --depth=1 https://github.com/MhmmdAmier/kernel_xiaomi_lavender.git -b oldcam-hmp lavender
 git clone --depth=1 https://github.com/Gabuters-Dev/gabuters-clang GABUTERSxTC
 
 # Main Declaration
-KERNEL_ROOTDIR=$(pwd)/ulysse # IMPORTANT ! Fill with your kernel source root directory.
-DEVICE_DEFCONFIG=ulysse_defconfig # IMPORTANT ! Declare your kernel source defconfig file here.
+KERNEL_ROOTDIR=$(pwd)/lavender # IMPORTANT ! Fill with your kernel source root directory.
+DEVICE_DEFCONFIG=lavender-perf_defconfig # IMPORTANT ! Declare your kernel source defconfig file here.
 CLANG_ROOTDIR=$(pwd)/GABUTERSxTC # IMPORTANT! Put your clang directory here.
 export KBUILD_BUILD_USER=nobody # Change with your own name or else.
 export KBUILD_BUILD_HOST=Gabuters-dev # Change with your own hostname.
@@ -25,7 +25,7 @@ export KBUILD_BUILD_HOST=Gabuters-dev # Change with your own hostname.
 CLANG_VER="$("$CLANG_ROOTDIR"/bin/clang --version | head -n 1 | perl -pe 's/\(http.*?\)//gs' | sed -e 's/  */ /g' -e 's/[[:space:]]*$//')"
 LLD_VER="$("$CLANG_ROOTDIR"/bin/ld.lld --version | head -n 1)"
 export KBUILD_COMPILER_STRING="$CLANG_VER with $LLD_VER"
-IMAGE=$(pwd)/ulysse/out/arch/arm64/boot/Image.gz-dtb
+IMAGE=$(pwd)/lavender/out/arch/arm64/boot/Image.gz-dtb
 DATE=$(date +"%F-%S")
 START=$(date +"%s")
 
@@ -79,7 +79,7 @@ make -j$(nproc) ARCH=arm64 O=out \
 	exit 1
    fi
 
-  git clone --depth=1 $ANYKERNEL AnyKernel
+  git clone --depth=1 $ANYKERNEL -b lavender AnyKernel
 	cp $IMAGE AnyKernel
 }
 
@@ -91,7 +91,7 @@ function push() {
         -F chat_id="$TG_CHAT_ID" \
         -F "disable_web_page_preview=true" \
         -F "parse_mode=html" \
-        -F caption="Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>ulysse</b> | <b>${KBUILD_COMPILER_STRING}</b>"
+        -F caption="Compile took $(($DIFF / 60)) minute(s) and $(($DIFF % 60)) second(s). | For <b>lavender</b> | <b>${KBUILD_COMPILER_STRING}</b>"
 }
 # Fin Error
 function finerr() {
@@ -106,7 +106,7 @@ function finerr() {
 # Zipping
 function zipping() {
     cd AnyKernel || exit 1
-    zip -r9 $KERNEL_NAME-ulysse-${DATE}.zip *
+    zip -r9 $KERNEL_NAME-lavender-${DATE}.zip *
     cd ..
 }
 check
