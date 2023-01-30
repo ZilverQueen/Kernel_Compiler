@@ -2,8 +2,8 @@ kind: pipeline
 name : xKernel Compiler
 version: rev1.5_template
 steps:
- - name: Kernel Deploy
-   image: nexgang/ubuntu:latest
+ - name: xKernel Compilation
+   image: xyzuan/xdocker:latest
    environment:
      KERNEL_NAME:
        from_secret: KERNEL_NAME
